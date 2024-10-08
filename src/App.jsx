@@ -8,6 +8,7 @@ import "./assets/styles/adaptive.css";
 
 import LoginPage from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
+import Orders from "./pages/Orders";
 import PrivateRoute from "./components/layout/PrivateRoute";
 import Blank from "./pages/Blank"
 
@@ -26,7 +27,7 @@ function App() {
           <Route
             exact
             path="/orders"
-            element={<PrivateRoute component={<Blank/>}/>}
+            element={<PrivateRoute component={<Orders/>}/>}
           />
           <Route
             exact
