@@ -110,34 +110,50 @@ function Sidenav({ color }) {
       ),
     },
     {
-      key: "/categories",
+      key: "/ordersv2",
       label: (
-        <NavLink to="/categories">
+        <NavLink to="/ordersv2">
           <span
             className="icon"
             style={{
-              backgroundColor: selectedKey === "categories" ? "#f0f2f5" : "",
+              backgroundColor: selectedKey === "ordersv2" ? "#f0f2f5" : "",
             }}
           >
-            <UnorderedListOutlined />
+            <ShoppingCartOutlined />
           </span>
-          <span className="label">Categories</span>
+          <span className="label">Ordersv2</span>
         </NavLink>
       ),
     },
     {
-      key: "/products",
+      key: "/gallery",
       label: (
-        <NavLink to="/products">
+        <NavLink to="/gallery">
           <span
             className="icon"
             style={{
-              backgroundColor: selectedKey === "products" ? "#f0f2f5" : "",
+              backgroundColor: selectedKey === "gallery" ? "#f0f2f5" : "",
+            }}
+          >
+            <UnorderedListOutlined />
+          </span>
+          <span className="label">Gallery</span>
+        </NavLink>
+      ),
+    },
+    {
+      key: "/galleryv2",
+      label: (
+        <NavLink to="/galleryv2">
+          <span
+            className="icon"
+            style={{
+              backgroundColor: selectedKey === "galleryv2" ? "#f0f2f5" : "",
             }}
           >
             <ProductOutlined />
           </span>
-          <span className="label">Products</span>
+          <span className="label">Galleryv2</span>
         </NavLink>
       ),
     },

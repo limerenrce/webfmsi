@@ -9,6 +9,9 @@ import "./assets/styles/adaptive.css";
 import LoginPage from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import Orders from "./pages/Orders";
+import OrderV2 from "./pages/Orders/ordersv";
+import Gallery from "./pages/Gallery";
+import Natures from "./pages/Natures";
 import PrivateRoute from "./components/layout/PrivateRoute";
 import Blank from "./pages/Blank"
 
@@ -31,13 +34,18 @@ function App() {
           />
           <Route
             exact
-            path="/categories"
-            element={<PrivateRoute component={<Blank/>}/>}
+            path="/ordersV2"
+            element={<PrivateRoute component={<OrderV2/>}/>}
           />
           <Route
             exact
-            path="/products"
-            element={<PrivateRoute component={<Blank/>}/>}
+            path="/gallery"
+            element={<PrivateRoute component={<Gallery/>}/>}
+          />
+          <Route
+            exact
+            path="/galleryv2"
+            element={<PrivateRoute component={<Natures/>}/>}
           />
           <Route
             exact
