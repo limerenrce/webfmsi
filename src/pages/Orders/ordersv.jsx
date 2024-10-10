@@ -7,10 +7,12 @@ const columns = [
   {
     title: 'Product',
     dataIndex: 'product',
+    width: 250
   },
   {
     title: 'Qty',
     dataIndex: 'qty',
+    width: 100
   },
   {
     title: 'Total',
