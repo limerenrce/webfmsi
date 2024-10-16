@@ -18,3 +18,8 @@ a li {
 .w-header {
   width: 1280px !important;
 }
+
+.header-search {
+  margin-top: 16px;
+  margin-bottom: 16px;
+}

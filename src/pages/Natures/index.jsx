@@ -6,8 +6,11 @@ import {
   EditOutlined,
   DeleteOutlined,
   CheckCircleOutlined,
+  SearchOutlined,
 } from "@ant-design/icons";
 import { getData } from "../../utils/api";
+import { Skeleton } from "antd";
+import Input from "antd/es/transfer/search";
 // import { formatDateIndonesia } from "../../utils/ui";
 
 const { Title } = Typography;
@@ -18,64 +21,82 @@ const Natures = () => {
   const lastSegment = pathSegments[pathSegments.length - 1];
 
   const [dataSource, setDataSource] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [searchText, setSearchText] = useState("");
 
   useEffect(() => {
     getDataNatures();
   }, []);
 
   const getDataNatures = () => {
-    getData("/natures")
+    setLoading(true);
+    getData("/api/natures")
       .then((resp) => {
         if (resp) {
           setDataSource(resp);
+          setLoading(false);
         }
       })
       .catch((err) => console.log(err));
   };
+  const onSearch = (value) => {
+    setSearchText(value.toLowerCase());
+  };
+
+  let dataSourceFiltered = dataSource.filter((item) => {
+    return (
+      item?.name_natures.toLowerCase().includes(searchText) ||
+      item?.description.toLowerCase().includes(searchText)
+    );
+  });
   return (
     <>
-      {/* <Row gutter={[24, 0]}>
-        <Col xs={22} className="mb-24">
-          <Card bordered={false} className="criclebox h-full w-full">
-            <Title>{lastSegment}</Title>
-            <Text style={{ fontSize: "12pt" }}>Add content here</Text>
-          </Card>
-        </Col>
-      </Row> */}
       <Title>Nature {lastSegment}</Title>
 
       <Divider />
-      {dataSource.length > 0 ? <List
-        grid={{
-          gutter: 16,
-          xs: 1,
-          sm: 2,
-          md: 4,
-          lg: 4,
-          xl: 3,
-        }}
-        dataSource={dataSource}
-        renderItem={(item) => (
-          <List.Item>
-            <Card
-              cover={<img src={`${item.url_photo}`} alt="categories-image" />}
-              actions={[
-                <EditOutlined key="edit" />,
-                <DeleteOutlined key="delete" type="danger" />,
-              ]}
-            >
-              <Card.Meta
-                avatar={<CheckCircleOutlined />}
-                title={item.name_natures}
-                description={`Posted: ${(
-                  item?.description
-                )}`}
-              />
-            </Card>
-          </List.Item>
-        )}
-      /> : "No Data"}
-      
+      <Input
+        prefix={<SearchOutlined />}
+        placeholder="input search text"
+        className="header-search"
+        allowClear
+        size="large"
+        onChange={(e) => onSearch(e.target.value)}
+      />
+      <Divider />
+      {dataSource?.length > 0 && !loading ? (
+        <List
+          grid={{
+            gutter: 16,
+            xs: 1,
+            sm: 2,
+            md: 4,
+            lg: 4,
+            xl: 3,
+          }}
+          dataSource={dataSourceFiltered ? dataSourceFiltered : []}
+          renderItem={(item) => (
+            <List.Item>
+              <Card
+                cover={<img src={`${item.url_photo}`} alt="categories-image" />}
+                actions={[
+                  <EditOutlined key="edit" />,
+                  <DeleteOutlined key="delete" type="danger" />,
+                ]}
+              >
+                <Card.Meta
+                  avatar={<CheckCircleOutlined />}
+                  title={item.name_natures}
+                  description={`${item?.description}`}
+                />
+              </Card>
+            </List.Item>
+          )}
+        />
+      ) : loading ? (
+        <Skeleton active />
+      ) : (
+        []
+      )}
     </>
   );
 };

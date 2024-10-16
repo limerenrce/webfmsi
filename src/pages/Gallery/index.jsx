@@ -18,6 +18,7 @@ const Gallery = () => {
   const lastSegment = pathSegments[pathSegments.length - 1];
 
   const [dataSource, setDataSource] = useState([]);
+  const [loading, ] = useState(true);
 
   useEffect(() => {
     getDataGallery();
@@ -45,6 +46,7 @@ const Gallery = () => {
       <Title>Nature {lastSegment}</Title>
 
       <Divider />
+      
       {dataSource?.length > 0 ? <List
         grid={{
           gutter: 16,
@@ -57,7 +59,7 @@ const Gallery = () => {
         dataSource={dataSource}
         renderItem={(item) => (
           <List.Item>
-            <Card
+            <Card 
               cover={<img src={`${item?.photo}`} alt="categories-image" />}
               actions={[
                 <EditOutlined key="edit" />,
@@ -73,7 +75,9 @@ const Gallery = () => {
               />
             </Card>
           </List.Item>
-        )}/> : "No Data"}
+        )}/> : <Card
+          loading={loading}>
+        </Card> }
     </>
   );
 };
