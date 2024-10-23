@@ -127,7 +127,7 @@ export const ieeeCitationFormatter = (
   months,
   years,
   publihser,
-  doiStr,
+  doiStr
 ) => {
   // Handle null or empty values
   let lists = [];
@@ -156,7 +156,7 @@ export const ieeeCitationFormatBooks = (
   edition,
   city,
   publisher,
-  years,
+  years
 ) => {
   // Authors. Last Name, *Title of the Book*, xth ed. City of Publisher. Publisher, Year.
   // eg: K T Dermawan, "Test Books", For Advanced Edition. Singaraja. Ganesha Press. Year
@@ -192,7 +192,7 @@ export const ieeeCitationFormatBookSection = (
   years,
   volumeChapter,
   pageFrom,
-  pageTo,
+  pageTo
 ) => {
   // [#] Author(s) Initial(s). Last Name, "Title of the chapter," in *Title of the Book*, xth ed., Editor(s) Initial(s). Last Name, Ed(s). City of Publisher, (only U.S. State), Country: Publisher, Year, ch. x, sec. x, pp. xxx-xxx.
   // K T Dermawan, "Introduction to data science," in Data Science Fundamentals, 2nd edition. Ganesha Exact, 2021, ch. 1, pp. 1-20.
@@ -239,7 +239,7 @@ export const ieeeCitationFormatProceedings = (
   years,
   pageFrom,
   pageTo,
-  doiStr,
+  doiStr
 ) => {
   // Author(s) Initial(s). Last Name, "Title of the paper," in *Proceedings of the [Conference Name]*, City of Conference, Year, pp. xxx-xxx.
   // eg. K T Dermawan. "Title of Paper" in "IConvet 1", Singaraja, 2024, pp. 10-15
@@ -346,4 +346,13 @@ export const showThumbnailGDrive = (fileID, size = "w100") => {
   // how to use <img src = { showImageGDrive("1SdbSvTB1YzVkx7EGORB3cIP2H86_jlDJ") }/>
   let url = `https://drive.google.com/thumbnail?id=${fileID}&sz=${size}`;
   return url;
+};
+
+export const ellipsisGenerator = (description) => {
+  return {
+    rows: 2,
+    expandable: true,
+    symbol: "more",
+    tooltip: description,
+  };
 };
